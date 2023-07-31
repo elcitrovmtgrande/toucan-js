@@ -20,6 +20,59 @@ export class Toucan {
     this._init();
   }
 
+  public isAuthentic(): boolean {
+    try {
+      if (typeof this.value === 'string') {
+        const data = jwt.verify(this.value, this.config?.secret || 'We love Toucan !');
+        if (typeof data === 'object') {
+          return true;
+        }
+        return false;
+      }
+      return false;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  public isJWT(): boolean {
+    return this.is_jwt;
+  }
+
+  public isValid(): boolean {
+    if (this.data?.exp > this._10(new Date().getTime())) {
+      this.is_valid = true;
+      return this.is_valid;
+    }
+    this.is_valid = false;
+    return this.is_valid;
+  }
+
+  public isExpired(): boolean {
+    if (this.data?.exp > this._10(new Date().getTime())) {
+      this.is_valid = true;
+      return !this.is_valid;
+    }
+    this.is_valid = false;
+    return !this.is_valid;
+  }
+
+  public getInput(): input {
+    return this.value;
+  }
+
+  public getConfig(): config {
+    return this.config;
+  }
+
+  public getToken(): string {
+    return this.token;
+  }
+
+  public getPayload(): payload {
+    return this.data;
+  }
+
   private _init(): void {
     if (typeof this.value === 'string') {
       try {
@@ -47,64 +100,6 @@ export class Toucan {
     const numAsString = number.toString();
     const firstTenDigits = numAsString.slice(0, 10);
     return parseInt(firstTenDigits, 10);
-  }
-
-  public isAuthentic(): boolean {
-    try {
-      if (typeof this.value === 'string') {
-        const data = jwt.verify(this.value, this.config?.secret || 'We love Toucan !');
-        if (typeof data === 'object') {
-          return true;
-        }
-        return false;
-      }
-      return false;
-    } catch (e) {
-      return false;
-    }
-  }
-
-  public isJWT(): boolean {
-    return this.is_jwt;
-  }
-
-  public isValid(): boolean {
-    if (this.data?.exp > this._10(new Date().getTime())) {
-      this.is_valid = true;
-      return true;
-    }
-    this.is_valid = false;
-    return false;
-  }
-
-  public isExpired(): boolean {
-    if (this.data?.exp > this._10(new Date().getTime())) {
-      this.is_valid = true;
-      return false;
-    }
-    this.is_valid = false;
-    return true;
-  }
-
-  public getInput(): input {
-    return this.value;
-  }
-
-  public setInput(input: input): Toucan {
-    this.value = input;
-    return this;
-  }
-
-  public getConfig(): config {
-    return this.config;
-  }
-
-  public getToken(): string {
-    return this.token;
-  }
-
-  public getPayload(): object {
-    return this.data;
   }
 }
 
