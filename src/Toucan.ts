@@ -90,7 +90,7 @@ export class Toucan {
       }
     }
     if (typeof this.value === 'object') {
-      this.token = jwt.sign(this.value, this.config?.secret || 'We love Toucan !', { expiresIn: this.config.expiresIn });
+      this.token = jwt.sign(this.value, this.config?.secret || 'We love Toucan !', { expiresIn: this.config?.expiresIn || 3600 });
       this.data = this.value;
       this.is_jwt = true;
     }

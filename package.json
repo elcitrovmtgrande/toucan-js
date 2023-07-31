@@ -2,12 +2,12 @@
   "name": "toucan",
   "version": "1.0.0",
   "description": "A lightweight API pour JWT (JSON Web Token) for both client and server side.",
-  "main": "index.js",
+  "main": "./index.js",
   "scripts": {
     "start:server": "ts-node src/server/express-server-app.ts",
     "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/server/express-server-app.ts",
     "build:ts": "tsc -p .",
-    "minify": "npx terser ./dist/**/*.js --output ./index.js",
+    "minify": "npx terser ./dist/index.js ./dist/Toucan.js --output ./dist-min/index.min.js --output ./dist-min/Toucan.min.js",
     "build": "npm run build:ts && npm run minify"
   },
   "keywords": [],

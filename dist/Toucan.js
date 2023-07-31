@@ -69,7 +69,7 @@ class Toucan {
         return this.data;
     }
     _init() {
-        var _a, _b;
+        var _a, _b, _c;
         if (typeof this.value === 'string') {
             try {
                 const data = (0, jwt_decode_1.default)(this.value);
@@ -87,7 +87,7 @@ class Toucan {
             }
         }
         if (typeof this.value === 'object') {
-            this.token = jsonwebtoken_1.default.sign(this.value, ((_b = this.config) === null || _b === void 0 ? void 0 : _b.secret) || 'We love Toucan !', { expiresIn: this.config.expiresIn });
+            this.token = jsonwebtoken_1.default.sign(this.value, ((_b = this.config) === null || _b === void 0 ? void 0 : _b.secret) || 'We love Toucan !', { expiresIn: ((_c = this.config) === null || _c === void 0 ? void 0 : _c.expiresIn) || 3600 });
             this.data = this.value;
             this.is_jwt = true;
         }
