@@ -1,6 +1,6 @@
 {
   "name": "jw-toucan",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "elcitrovmtgrande",
   "license": "ISC",
   "description": "A lightweight API pour JWT (JSON Web Token) for both client and server side.",
