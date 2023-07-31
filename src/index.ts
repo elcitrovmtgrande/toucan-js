@@ -39,7 +39,7 @@ export class Toucan {
   }
 
   public isValid(): boolean {
-    if (this.data?.exp > this._10(new Date().getTime())) {
+    if (this.data?.exp && this.data.exp > this._10(new Date().getTime())) {
       this.is_valid = true;
       return this.is_valid;
     }
@@ -48,7 +48,7 @@ export class Toucan {
   }
 
   public isExpired(): boolean {
-    if (this.data?.exp > this._10(new Date().getTime())) {
+    if (this.data?.exp && this.data.exp > this._10(new Date().getTime())) {
       this.is_valid = true;
       return !this.is_valid;
     }
@@ -80,7 +80,7 @@ export class Toucan {
           this.data = data as payload;
           this.token = this.value;
           this.is_jwt = true;
-          if (this.data?.exp > this._10(new Date().getTime())) {
+          if (this.data?.exp && this.data.exp > this._10(new Date().getTime())) {
             this.is_valid = true;
           }
         }
@@ -105,8 +105,8 @@ export class Toucan {
 export type payload = {
   [key: string]: any; // N'importe quelle propriété de n'importe quel type
 } & {
-  iat: number;
-  exp: number;
+  iat?: number;
+  exp?: number;
 };;
 
 export type input = string | payload;
