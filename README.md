@@ -6,30 +6,28 @@
 
 
 ## Description
-Toucan is a JS library which allows you to create and manage JWT (JSON Web Token - <i>here know as a JSON Web Toucan looool </i>) the simplest way on both client and server side.
+Toucan is a JS library that lets you create and manage JSON Web Tokens (JWTs). But we're not going to call it just JWT, that's too boring! Let's call it "JSON Web Toucan" instead. 🤣 This awesome library makes working with JWTs a piece of cake, whether you're on the client or server side.
 
-Toucan is also a very lighweight solution and its API is very simple to use.
-
-Why wouldn't you change for Toucan ? 🤩
+Toucan is super lightweight and has a really simple and easy-to-use API. So, why stick to the old ways when you can fly high with Toucan? 🤩
 
 ## Installation
-To install the package, run the following command:
+To install this amazing package, run the following command:
 
 ```bash
 npm i toucan
 ```
 
-Yes, no small talks, that's it.
+That's it, no need for small talk. You're ready to roll!
 
 ## Usage
-To use the package, you have to import it in your project:
+To start using Toucan, just import it into your project:
 
 ```typescript
 import Toucan from 'toucan';
 ```
 
 ### Create a Toucan instance
-You can create a new instance of Toucan from a javascript object as a data payload or directly from an existing JWT you've stored somewhere.
+You can create a new instance of Toucan from a JavaScript object as a data payload or directly from an existing JWT you've stored somewhere.
 
 ```typescript
 const FromData = new Toucan({ id: 1, name: 'john' }, { expiresIn: 10 });
@@ -37,10 +35,10 @@ const FromData = new Toucan({ id: 1, name: 'john' }, { expiresIn: 10 });
 const FromJWT = new Toucan('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImpvaG4iLCJpYXQiOjE2OTA4NDE0NTYsImV4cCI6MTY5MDg0NTA1Nn0.4m6mk7T8z0tuW18eV3WcaGgkeZa7FVTeIIIdOfvSZGA'); 
 
 ```
-This the main strength of Toucan. Only one method to create a new instance from a data payload or from an existing JWT.
+This is where Toucan shines! With just one method, you can create a new instance from a data payload or an existing JWT.
 
 ### Get the JWT or the data payload from the instance
-Then, you can use the instance to get the JWT or the data payload.
+Once you have your Toucan instance, you can easily get the JWT or the data payload.
 
 ```typescript
 const MyToucan = new Toucan(payload: string | object, config: object);
@@ -63,3 +61,4 @@ MyToucan.getPayload(); // returns the data payload
 ## Contributors
 - [elcitrovmtgrande](https://www.linkedin.com/in/victormahe)
 
+Keep on coding and let your Toucan fly high! 🚀
