@@ -23,7 +23,7 @@ That's it, no need for small talk. You're ready to roll!
 To start using Toucan, just import it into your project:
 
 ```typescript
-import Toucan from 'toucan';
+import Toucan from 'jw-toucan';
 ```
 
 ### Create a Toucan instance
