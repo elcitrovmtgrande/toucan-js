@@ -40,7 +40,7 @@ class Toucan {
     }
     isValid() {
         var _a;
-        if (((_a = this.data) === null || _a === void 0 ? void 0 : _a.exp) > this._10(new Date().getTime())) {
+        if (((_a = this.data) === null || _a === void 0 ? void 0 : _a.exp) && this.data.exp > this._10(new Date().getTime())) {
             this.is_valid = true;
             return this.is_valid;
         }
@@ -49,7 +49,7 @@ class Toucan {
     }
     isExpired() {
         var _a;
-        if (((_a = this.data) === null || _a === void 0 ? void 0 : _a.exp) > this._10(new Date().getTime())) {
+        if (((_a = this.data) === null || _a === void 0 ? void 0 : _a.exp) && this.data.exp > this._10(new Date().getTime())) {
             this.is_valid = true;
             return !this.is_valid;
         }
@@ -77,7 +77,7 @@ class Toucan {
                     this.data = data;
                     this.token = this.value;
                     this.is_jwt = true;
-                    if (((_a = this.data) === null || _a === void 0 ? void 0 : _a.exp) > this._10(new Date().getTime())) {
+                    if (((_a = this.data) === null || _a === void 0 ? void 0 : _a.exp) && this.data.exp > this._10(new Date().getTime())) {
                         this.is_valid = true;
                     }
                 }
