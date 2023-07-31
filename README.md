@@ -1,4 +1,4 @@
-# Toucan.js 🦤
+# JW-Toucan 🦤
 ![Toucan](https://images.pexels.com/photos/15478033/pexels-photo-15478033/free-photo-of-close-up-of-a-toucan.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)
 #
 
@@ -14,7 +14,7 @@ Toucan is super lightweight and has a really simple and easy-to-use API. So, why
 To install this amazing package, run the following command:
 
 ```bash
-npm i toucan
+npm i jw-toucan
 ```
 
 That's it, no need for small talk. You're ready to roll!

@@ -1,6 +1,6 @@
-const {Toucan} = require('./dist/toucan.min.js');
+const { Toucan } = require('./dist/toucan.min.js');
 
-const toucan = new Toucan({ id: 1, name: 'john' });
+const toucan = new Toucan({ email: 'tutu@toto.fr '});
 
 console.log(toucan.getToken());
 
