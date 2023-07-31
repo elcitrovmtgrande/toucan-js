@@ -6,12 +6,12 @@ export class Toucan {
   private value: input;
   private config: config;
   private token: string = '';
-  private data: payload = {
-    iat: -1,
-    exp: 0,
-  };
+  private data: payload = { iat: -1, exp: 0, };
   private is_jwt: boolean = false;
   private is_valid: boolean = false;
+  private default_secret: string = 'We love Toucan !';
+  private default_expiresIn: number = 3600;
+
 
   constructor(value: input, config: config) {
     this.value = value;
@@ -22,7 +22,7 @@ export class Toucan {
   public isAuthentic(): boolean {
     try {
       if (typeof this.value === 'string') {
-        const data = jwt.verify(this.value, this.config?.secret || 'We love Toucan !');
+        const data = jwt.verify(this.value, this.config?.secret || this.default_secret);
         if (typeof data === 'object') {
           return true;
         }
@@ -73,6 +73,7 @@ export class Toucan {
   }
 
   private _init(): void {
+    // If initial param is a JWT
     if (typeof this.value === 'string') {
       try {
         const data = jwtDecode(this.value);
@@ -88,9 +89,12 @@ export class Toucan {
         console.log(`[${new Date().toJSON()}:Toucan] >>> Oh no ! Toucan can only read real tokens... (provided value: ${this.value})`);
       }
     }
+    // If initial param is a payload
     if (typeof this.value === 'object') {
-      this.token = jwt.sign(this.value, this.config?.secret || 'We love Toucan !', { expiresIn: this.config?.expiresIn || 3600 });
-      this.data = this.value;
+      const token = jwt.sign(this.value, this.config?.secret || this.default_secret, { expiresIn: this.config?.expiresIn || this.default_expiresIn });
+      const data = jwtDecode(token) as payload;
+      this.token = token;
+      this.data = data;
       this.is_jwt = true;
     }
   }
@@ -103,7 +107,7 @@ export class Toucan {
 }
 
 export type payload = {
-  [key: string]: any; // N'importe quelle propriété de n'importe quel type
+  [key: string]: any;
 } & {
   iat?: number;
   exp?: number;

@@ -9,12 +9,11 @@ const jwt_decode_1 = __importDefault(require("jwt-decode"));
 class Toucan {
     constructor(value, config) {
         this.token = '';
-        this.data = {
-            iat: -1,
-            exp: 0,
-        };
+        this.data = { iat: -1, exp: 0, };
         this.is_jwt = false;
         this.is_valid = false;
+        this.default_secret = 'We love Toucan !';
+        this.default_expiresIn = 3600;
         this.value = value;
         this.config = config;
         this._init();
@@ -23,7 +22,7 @@ class Toucan {
         var _a;
         try {
             if (typeof this.value === 'string') {
-                const data = jsonwebtoken_1.default.verify(this.value, ((_a = this.config) === null || _a === void 0 ? void 0 : _a.secret) || 'We love Toucan !');
+                const data = jsonwebtoken_1.default.verify(this.value, ((_a = this.config) === null || _a === void 0 ? void 0 : _a.secret) || this.default_secret);
                 if (typeof data === 'object') {
                     return true;
                 }
@@ -70,6 +69,7 @@ class Toucan {
     }
     _init() {
         var _a, _b, _c;
+        // If initial param is a JWT
         if (typeof this.value === 'string') {
             try {
                 const data = (0, jwt_decode_1.default)(this.value);
@@ -86,9 +86,12 @@ class Toucan {
                 console.log(`[${new Date().toJSON()}:Toucan] >>> Oh no ! Toucan can only read real tokens... (provided value: ${this.value})`);
             }
         }
+        // If initial param is a payload
         if (typeof this.value === 'object') {
-            this.token = jsonwebtoken_1.default.sign(this.value, ((_b = this.config) === null || _b === void 0 ? void 0 : _b.secret) || 'We love Toucan !', { expiresIn: ((_c = this.config) === null || _c === void 0 ? void 0 : _c.expiresIn) || 3600 });
-            this.data = this.value;
+            const token = jsonwebtoken_1.default.sign(this.value, ((_b = this.config) === null || _b === void 0 ? void 0 : _b.secret) || this.default_secret, { expiresIn: ((_c = this.config) === null || _c === void 0 ? void 0 : _c.expiresIn) || this.default_expiresIn });
+            const data = (0, jwt_decode_1.default)(token);
+            this.token = token;
+            this.data = data;
             this.is_jwt = true;
         }
     }
